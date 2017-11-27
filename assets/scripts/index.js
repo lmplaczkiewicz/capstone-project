@@ -2,6 +2,13 @@
 
 const setAPIOrigin = require('../../lib/set-api-origin')
 const config = require('./config')
+const authevents = require('./auth/authevents')
+// const getPolicy = require('./files/fileapi')
+
+// invokes click handlers for authentication and file actions
+$(() => {
+  authevents.addAuthHandlers()
+})
 
 $(() => {
   setAPIOrigin(location, config)
