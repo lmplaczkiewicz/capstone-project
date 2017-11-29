@@ -1,6 +1,9 @@
 'use strict'
 
 const store = require('../store')
+const gameEvents = require('../game/gameevents')
+const gameApi = require('../game/gameapi')
+const gameUi = require('../game/gameui')
 
 const alertCallerAuthSuccess = (alertLocation, alertMessage) => {
   $('#' + alertLocation).addClass('alert alert-success').html(alertMessage)
@@ -38,7 +41,7 @@ const signUpFailure = () => {
 }
 
 const signInSuccess = (response) => {
-  $('#sign-in-message').text('Sign In to Load Files')
+  $('#sign-in-message').text('Sign In to Play')
   $('#sign-in-email').removeData()
   $('#sign-in-password').val('')
   $('#sign-in-form').modal('hide')
@@ -46,20 +49,21 @@ const signInSuccess = (response) => {
   $('#sign-up-link').hide()
   $('#sign-out-link').show()
   $('#change-password-link').show()
-  $('#create-ads-link').show()
-  $('#manage-ads-link').show()
-  $('#uploads-thumbnails').show()
-  $('#get-uploads-link').hide()
-  $('#get-user-uploads-link').show()
-  $('#file-upload-link').hide()
-  $('#file-upload-all-link').show()
+  // $('#create-ads-link').show()
+  // $('#manage-ads-link').show()
+  // $('#uploads-thumbnails').show()
+  // $('#get-uploads-link').hide()
+  // $('#get-user-uploads-link').show()
+  // $('#file-upload-link').hide()
+  // $('#file-upload-all-link').show()
   // Used to clear out login data
   $('#sign-in-form').on('hidden.bs.modal', function () {
     $(this).find('form').trigger('reset')
   })
   store.user = response.user
-  $('#get-uploads-link').trigger('click')
+  // $('#get-uploads-link').trigger('click')
   alertCallerAuthSuccess('frontSuccess', 'Sign-In Success')
+  gameEvents.showCharacters()
 }
 
 const signInFailure = () => {
@@ -92,7 +96,7 @@ const initializeForm = () => {
   $('#get-user-uploads-link').hide()
   $('#sign-in-link').show()
   $('#sign-up-link').show()
-  $('#sign-in-message').text('Please Sign In to Upload files.')
+  $('#sign-in-message').text('Please Sign In to Play.')
   $('#sign-in-form').modal('show')
   $('#uploads-thumbnails').hide()
   $('#no-uploads-message').hide()

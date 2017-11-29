@@ -6,7 +6,7 @@ $background-color: rgba(0, 0, 0, .7);
 $border-color-input: rgba(255, 255, 255, 0.42);
 $font-family: verdana;
 
-body {
+.openingPicture {
   background: url('https://i.imgur.com/GsDyBrC.jpg') no-repeat center center fixed;
   background-size: cover;
   &:after {
@@ -18,10 +18,23 @@ body {
     left: 0;
     background-color: $background-tint;
     opacity: .3;
-    z-index: -1;
+    z-index: -2;
   }
 }
 
+.tavernPicture {
+  background: url('https://i.imgur.com/blXCJP9.jpg') no-repeat center center fixed;
+  background-size: cover;
+  &:after {
+    content: '';
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    z-index: -1;
+  }
+}
 
 .modal-content {
   background-color: $background-color;
@@ -134,7 +147,7 @@ body {
 p {
   text-align: center;
   margin: 0 0 10px;
-  max-height: 19px;
+  // max-height: 19px;
 }
 
 .modal-title {
@@ -214,6 +227,31 @@ label {
   top: 20px;
   left: 0px;
   right: 0px;
+}
+
+.characterHolder {
+  background: white;
+  margin-bottom: 10px;
+}
+
+th {
+  padding: 10px 10px;
+}
+
+.questContainer {
+  float: left;
+  width: 700px;
+}
+
+.col {
+  width: 250px;
+  display: inline-block;
+  background: url('https://db4sgowjqfwig.cloudfront.net/campaigns/57369/assets/377938/Parchment-Body.png') no-repeat center;
+  margin: 25px;
+}
+
+.startQuestButton {
+  margin: auto 25%;
 }
 
 .shake {

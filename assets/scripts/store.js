@@ -3,4 +3,18 @@
 const store = {
 }
 
-module.exports = store
+const characters = {
+}
+
+const character = {
+}
+
+const quests = {
+}
+
+module.exports = {
+  store,
+  characters,
+  character,
+  quests
+}

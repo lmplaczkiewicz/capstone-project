@@ -1,0 +1,14 @@
+<div class='questTiles' id='questTilesId'>
+  <div class='container questContainer'>
+{{#each quests as |quest|}}
+
+    <div class="col">
+      <p class='questInfo'>{{quest.story}}</p>
+      <p class='questInfo'>{{quest.reward}} Gold</p>
+      <p class='questInfo'>{{quest.renown}} Renown</p>
+      <button data-id="{{quest.id}}" class="startQuestButton btn btn-primary">Start Quest</button>
+    </div>
+
+{{/each}}
+</div>
+</div>
