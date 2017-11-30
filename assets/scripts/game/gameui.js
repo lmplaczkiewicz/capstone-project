@@ -8,6 +8,7 @@ const showQuestsTemplate = require('../templates/questTiles.handlebars')
 const showMonstersTemplate = require('../templates/monsterTiles.handlebars')
 const showCharacterTemplate = require('../templates/statsTile.handlebars')
 const showCombatUiTemplate = require('../templates/combatUi.handlebars')
+const showStatsTemplate = require('../templates/tavernStatTile.handlebars')
 
 const showCharactersSuccess = function (data) {
   console.log(data)
@@ -98,12 +99,16 @@ const updateCharacterFailure = () => {
 
 const getQuestsSuccess = function (data) {
   console.log(data)
+  const adventurer = store.character
   $('#MonsterTileDisplay').hide()
   $('#characterFightDisplay').hide()
   $('#combatUiDisplay').hide()
   $('#questTileDisplay').show()
+  $('#tavernStatTileDisplay').show()
   const showQuestsHtml = showQuestsTemplate({ quests: data.quests })
   $('#questTileDisplay').html(showQuestsHtml)
+  const showStatsHtml = showStatsTemplate({ adventurer })
+  $('#tavernStatTileDisplay').html(showStatsHtml)
   store.quests = data.quests
 }
 
@@ -134,6 +139,7 @@ const getQuestSuccess = function () {
   $('body').addClass('openingPicture')
   $('body').removeClass('tavernPicture')
   $('#questTileDisplay').hide()
+  $('#tavernStatTileDisplay').hide()
   $('#MonsterTileDisplay').show()
   $('#characterFightDisplay').show()
   $('#combatUiDisplay').show()

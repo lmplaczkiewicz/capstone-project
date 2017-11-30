@@ -115,7 +115,9 @@ const checkWin = function () {
     $('#combatLogId').append('\n' + character.name + ' has fallen in battle to the ' + monster.name + '. They will fade to dust and be lost forevermore.' + '\n')
     scrollText()
     api.deadCharacter(store.character.id)
-      .then(showCharacters)
+      .then($('.deadButton').css('display', 'block'))
+      .then($('.attackButton').css('display', 'none'))
+      .then($('.deadButton').on('click', showCharacters))
   } else if (store.monster.health === 0) {
     $('#combatLogId').append('\n' + character.name + ' has slain the ' + monster.name + '. They will return to the Green Dragon Tavern victorious!' + '\n')
     scrollText()

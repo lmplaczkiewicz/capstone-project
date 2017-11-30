@@ -49,19 +49,10 @@ const signInSuccess = (response) => {
   $('#sign-up-link').hide()
   $('#sign-out-link').show()
   $('#change-password-link').show()
-  // $('#create-ads-link').show()
-  // $('#manage-ads-link').show()
-  // $('#uploads-thumbnails').show()
-  // $('#get-uploads-link').hide()
-  // $('#get-user-uploads-link').show()
-  // $('#file-upload-link').hide()
-  // $('#file-upload-all-link').show()
-  // Used to clear out login data
   $('#sign-in-form').on('hidden.bs.modal', function () {
     $(this).find('form').trigger('reset')
   })
   store.user = response.user
-  // $('#get-uploads-link').trigger('click')
   alertCallerAuthSuccess('frontSuccess', 'Sign-In Success')
   gameEvents.showCharacters()
 }
@@ -101,7 +92,23 @@ const initializeForm = () => {
   $('#uploads-thumbnails').hide()
   $('#no-uploads-message').hide()
   $('#file-upload-all-link').hide()
+  $('#MonsterTileDisplay').hide()
+  $('#characterFightDisplay').hide()
+  $('#combatUiDisplay').hide()
+  $('#questTileDisplay').hide()
+  $('#tavernStatTileDisplay').hide()
+  $('body').addClass('openingPicture')
+  $('body').removeClass('tavernPicture')
+  $('#characterSelectScreen').hide()
+  $('#characterTilesId').hide()
   store.user = null
+  store.characters = null
+  store.character = null
+  store.quests = null
+  store.quest = null
+  store.monsters = null
+  store.monster = null
+  store.startingHealth = null
 }
 
 const signOutSuccess = () => {

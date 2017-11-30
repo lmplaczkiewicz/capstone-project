@@ -3,6 +3,9 @@
 const store = {
 }
 
+const user = {
+}
+
 const characters = {
 }
 
@@ -32,5 +35,6 @@ module.exports = {
   quest,
   monsters,
   monster,
-  startingHealth
+  startingHealth,
+  user
 }

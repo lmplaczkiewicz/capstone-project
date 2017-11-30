@@ -230,8 +230,7 @@ label {
 }
 
 .characterHolder {
-  background: white;
-  margin-bottom: 10px;
+  margin: auto auto 10px auto;
 }
 
 th {
@@ -243,10 +242,21 @@ th {
   width: 700px;
 }
 
+.parchment {
+  background: url('https://st2.depositphotos.com/1004788/6286/i/950/depositphotos_62860847-stock-photo-light-gold-background-paper-of.jpg') center;
+}
+
 .col {
   width: 250px;
   display: inline-block;
-  background: url('https://db4sgowjqfwig.cloudfront.net/campaigns/57369/assets/377938/Parchment-Body.png') no-repeat center;
+  background: url('https://st2.depositphotos.com/1004788/6286/i/950/depositphotos_62860847-stock-photo-light-gold-background-paper-of.jpg') no-repeat center;
+  margin: 25px;
+}
+
+.statTile {
+  float: right;
+  width: 250px;
+  background: url('https://st2.depositphotos.com/1004788/6286/i/950/depositphotos_62860847-stock-photo-light-gold-background-paper-of.jpg') no-repeat center;
   margin: 25px;
 }
 
@@ -280,12 +290,22 @@ textarea {
   margin: auto;
 }
 
+.deadButton {
+  display: none;
+  margin: auto;
+}
+
 .positionCardChar {
   left: 30%;
 }
 
 .positionCardMon {
   left: 38%;
+}
+
+.createCharacterButton {
+  text-align: center;
+  margin-bottom: 20px;
 }
 
 .row {
