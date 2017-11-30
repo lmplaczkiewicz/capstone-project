@@ -254,6 +254,25 @@ th {
   margin: auto 25%;
 }
 
+.col-centered{
+    float: none;
+    margin: 0 auto;
+}
+
+.card {
+  width: 200px;
+  text-align: center;
+  margin: auto
+}
+
+.combat {
+  height: 200px;
+}
+
+textarea {
+  resize: none;
+}
+
 .shake {
   animation: shake 1s;
 }

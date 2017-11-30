@@ -1,7 +1,8 @@
 const getFormFields = require('../../../lib/get-form-fields')
 const api = require('./gameapi')
 const ui = require('./gameui')
-const store = require('../store')
+const combat = require('../fight/fightevents.js')
+// const store = require('../store')
 
 const onCreateCharacter = function (event) {
   event.preventDefault()
@@ -18,6 +19,7 @@ const onStartQuest = function (event) {
   const questId = event.target.getAttribute('data-id')
   api.getQuest(questId)
     .then(ui.getQuestSuccess)
+    .then(combat.fightStart)
     .catch(ui.getQuestFailure)
 }
 

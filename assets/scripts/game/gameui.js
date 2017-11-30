@@ -4,6 +4,9 @@ const store = require('../store')
 const showScreenTemplate = require('../templates/characterScreen.handlebars')
 const showCharactersTemplate = require('../templates/characterTiles.handlebars')
 const showQuestsTemplate = require('../templates/questTiles.handlebars')
+const showMonstersTemplate = require('../templates/monsterTiles.handlebars')
+const showCharacterTemplate = require('../templates/statsTile.handlebars')
+const showCombatUiTemplate = require('../templates/combatUi.handlebars')
 
 const showCharactersSuccess = function (data) {
   console.log(data)
@@ -64,7 +67,7 @@ const deleteCharacterFailure = () => {
 }
 
 const getCharacterSuccess = (data) => {
-  store.character = data
+  store.character = data.character
   $('body').removeClass('openingPicture')
   $('body').addClass('tavernPicture')
   $('#characterSelectScreen').hide()
@@ -101,10 +104,18 @@ const getQuestsFailure = () => {
 }
 
 const getQuestSuccess = (data) => {
-  store.character = data
+  store.quest = data.quest
+  store.monsters = data.quest.monsters
+  const adventurer = store.character
   $('body').addClass('openingPicture')
   $('body').removeClass('tavernPicture')
   $('#questTileDisplay').hide()
+  const showMonstersHtml = showMonstersTemplate({ monsters: data.quest.monsters })
+  $('#MonsterTileDisplay').html(showMonstersHtml)
+  const showCharacterHtml = showCharacterTemplate({ adventurer })
+  $('#characterFightDisplay').html(showCharacterHtml)
+  const showCombatUiHtml = showCombatUiTemplate({})
+  $('#combatUiDisplay').html(showCombatUiHtml)
   alertCallerSuccess('frontSuccess', 'Quest Selected')
 }
 

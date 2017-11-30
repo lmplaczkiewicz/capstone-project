@@ -12,9 +12,17 @@ const character = {
 const quests = {
 }
 
+const quest = {
+}
+
+const monsters = {
+}
+
 module.exports = {
   store,
   characters,
   character,
-  quests
+  quests,
+  quest,
+  monsters
 }
