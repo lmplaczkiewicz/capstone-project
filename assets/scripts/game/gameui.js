@@ -1,6 +1,7 @@
 'use strict'
 
 const store = require('../store')
+const api = require('./gameapi')
 const showScreenTemplate = require('../templates/characterScreen.handlebars')
 const showCharactersTemplate = require('../templates/characterTiles.handlebars')
 const showQuestsTemplate = require('../templates/questTiles.handlebars')
@@ -10,6 +11,9 @@ const showCombatUiTemplate = require('../templates/combatUi.handlebars')
 
 const showCharactersSuccess = function (data) {
   console.log(data)
+  $('#MonsterTileDisplay').hide()
+  $('#characterFightDisplay').hide()
+  $('#combatUiDisplay').hide()
   const showScreenHtml = showScreenTemplate({})
   $('#characterScreenDisplay').html(showScreenHtml)
   const showCharactersHtml = showCharactersTemplate({ characters: data.characters })
@@ -94,6 +98,10 @@ const updateCharacterFailure = () => {
 
 const getQuestsSuccess = function (data) {
   console.log(data)
+  $('#MonsterTileDisplay').hide()
+  $('#characterFightDisplay').hide()
+  $('#combatUiDisplay').hide()
+  $('#questTileDisplay').show()
   const showQuestsHtml = showQuestsTemplate({ quests: data.quests })
   $('#questTileDisplay').html(showQuestsHtml)
   store.quests = data.quests
@@ -103,14 +111,33 @@ const getQuestsFailure = () => {
   alertCallerFailure('frontError', 'Unable to Load Quests')
 }
 
-const getQuestSuccess = (data) => {
+const assignStore = function (data) {
+  store.monster = data.monster
+  getQuestSuccess()
+}
+
+const getMonsterForDisplay = function (data) {
   store.quest = data.quest
   store.monsters = data.quest.monsters
+  api.getMonster(data.quest.monsters[0].id)
+    .then(assignStore)
+}
+
+const getQuestSuccess = function () {
+  // getMonsterForDisplay(data.quest.monsters[0].id)
+  // store.quest = data.quest
+  // store.monsters = data.quest.monsters
   const adventurer = store.character
+  const monster = store.monster
+  console.log('this is monster', monster)
+  store.startingHealth = store.character.health
   $('body').addClass('openingPicture')
   $('body').removeClass('tavernPicture')
   $('#questTileDisplay').hide()
-  const showMonstersHtml = showMonstersTemplate({ monsters: data.quest.monsters })
+  $('#MonsterTileDisplay').show()
+  $('#characterFightDisplay').show()
+  $('#combatUiDisplay').show()
+  const showMonstersHtml = showMonstersTemplate({ monster })
   $('#MonsterTileDisplay').html(showMonstersHtml)
   const showCharacterHtml = showCharacterTemplate({ adventurer })
   $('#characterFightDisplay').html(showCharacterHtml)
@@ -121,6 +148,19 @@ const getQuestSuccess = (data) => {
 
 const getQuestFailure = () => {
   alertCallerFailure('frontError', 'Unable to Load Quest')
+}
+
+// Combat work around
+
+const updateTiles = function () {
+  const monster = store.monster
+  const adventurer = store.character
+  console.log(adventurer)
+  console.log(monster)
+  const showMonstersHtml = showMonstersTemplate({ monster })
+  $('#MonsterTileDisplay').html(showMonstersHtml)
+  const showCharacterHtml = showCharacterTemplate({ adventurer })
+  $('#characterFightDisplay').html(showCharacterHtml)
 }
 
 module.exports = {
@@ -137,5 +177,7 @@ module.exports = {
   getQuestsSuccess,
   getQuestsFailure,
   getQuestSuccess,
-  getQuestFailure
+  getQuestFailure,
+  updateTiles,
+  getMonsterForDisplay
 }

@@ -8,6 +8,9 @@
           <th scope="col"> Experience: {{character.xp}} </th>
           <th scope="col"> Armor Class: {{character.armor}} </th>
           <th scope="col"> Health: {{character.health}} </th>
+          <th scope="col"> Renown: {{character.renown}} </th>
+          <th scope="col"> Gold: {{character.currency}} </th>
+          <th scope="col"> Equipment: {{character.weapon.name}} </th>
           <th scope="col"><div data-id="{{character.id}}" class="updateFormCharacterButton" id="updateHandleButton"><button  data-id="{{character.id}}" type="button" class="updateHandleButton btn btn-primary modal-button" data-toggle="modal" data-target="#updateCharacterModal{{character.id}}">Update Character</button>
             <form data-id="{{character.id}}" class="dataAccess updateCharacter" id="updateCharacterId{{character.id}}">
             <div class="modal fade errorTarget" id="updateCharacterModal{{character.id}}" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">

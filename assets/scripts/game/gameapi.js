@@ -11,18 +11,30 @@ const statGenerator = function (data) {
     data.character.health = 16
     data.character.xp = 0
     data.character.player_class_id = 2
+    const startGold = roll.roll('2d4')
+    data.character.currency = startGold.result * 10
+    data.character.renown = 0
+    data.character.weapon_id = 1
     return data
   } else if (data.character.player_class_id === 'Fighter') {
     data.character.armor = 18
     data.character.health = 14
     data.character.xp = 0
     data.character.player_class_id = 1
+    const startGold = roll.roll('5d4')
+    data.character.currency = startGold.result * 10
+    data.character.renown = 0
+    data.character.weapon_id = 3
     return data
   } else if (data.character.player_class_id === 'Ranger') {
     data.character.armor = 14
     data.character.health = 14
     data.character.xp = 0
     data.character.player_class_id = 3
+    const startGold = roll.roll('5d4')
+    data.character.currency = startGold.result * 10
+    data.character.renown = 0
+    data.character.weapon_id = 2
     return data
   }
 }
@@ -61,6 +73,7 @@ const removeCharacter = function (data) {
 }
 
 const updateCharacter = function (characterId, data) {
+  console.log(data)
   return $.ajax({
     url: config.apiOrigin + '/characters/' + characterId,
     method: 'PATCH',
@@ -111,6 +124,43 @@ const getQuest = function (questId) {
   })
 }
 
+// Combat Work around
+
+const getMonster = function (monsterId) {
+  return $.ajax({
+    url: config.apiOrigin + '/monsters/' + monsterId,
+    method: 'GET',
+    headers: {
+      Authorization: 'Token token=' + store.user.token
+    }
+  })
+}
+
+const deadCharacter = function (data) {
+  return $.ajax({
+    url: config.apiOrigin + '/characters/' + data,
+    method: 'DELETE',
+    headers: {
+      Authorization: 'Token token=' + store.user.token
+    }
+  })
+}
+
+const updateQuestCharacter = function (characterId, data) {
+  console.log(characterId)
+  console.log(data)
+  return $.ajax({
+    url: config.apiOrigin + '/characters/' + characterId,
+    method: 'PATCH',
+    headers: {
+      Authorization: 'Token token=' + store.user.token
+    },
+    data: {
+      character: data
+    }
+  })
+}
+
 module.exports = {
   createCharacter,
   removeCharacter,
@@ -119,5 +169,8 @@ module.exports = {
   getCharacter,
   statGenerator,
   getQuests,
-  getQuest
+  getQuest,
+  getMonster,
+  deadCharacter,
+  updateQuestCharacter
 }

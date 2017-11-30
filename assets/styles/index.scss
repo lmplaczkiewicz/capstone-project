@@ -271,6 +271,25 @@ th {
 
 textarea {
   resize: none;
+  font-size: 10px;
+  line-height: 1;
+}
+
+.returnButton {
+  display: none;
+  margin: auto;
+}
+
+.positionCardChar {
+  left: 30%;
+}
+
+.positionCardMon {
+  left: 38%;
+}
+
+.row {
+  margin-top: 10px;
 }
 
 .shake {

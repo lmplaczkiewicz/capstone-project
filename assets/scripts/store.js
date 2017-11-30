@@ -18,11 +18,19 @@ const quest = {
 const monsters = {
 }
 
+const monster = {
+}
+
+const startingHealth = {
+}
+
 module.exports = {
   store,
   characters,
   character,
   quests,
   quest,
-  monsters
+  monsters,
+  monster,
+  startingHealth
 }
