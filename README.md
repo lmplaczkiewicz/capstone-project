@@ -12,7 +12,8 @@ Mon - Tues I started adding additional tables and setting up my character select
 
 Wed - Thurs I started combat logic and the associated join table between monsters and quests and added the weapon table for both characters and monsters. I added the fight screen area and began styling.
 
-User Stories: 
+User Stories:
+https://github.com/lmplaczkiewicz/capstone-project/blob/master/planning/userStories.md
 
 Wireframe: https://github.com/lmplaczkiewicz/capstone-project/blob/master/planning/Wireframe%201.png
 
