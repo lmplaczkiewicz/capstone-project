@@ -127,7 +127,7 @@ const assignStore = function (data) {
 const getMonsterForDisplay = function (data) {
   store.quest = data.quest
   store.monsters = data.quest.monsters
-  api.getMonster(data.quest.monsters[0].id)
+  return api.getMonster(data.quest.monsters[0].id)
     .then(assignStore)
 }
 
@@ -136,7 +136,7 @@ const getQuestSuccess = function () {
   // store.quest = data.quest
   // store.monsters = data.quest.monsters
   const adventurer = store.character
-  const monster = store.monsters[0]
+  const monster = store.monster
   store.startingHealth = store.character.health
   $('body').addClass('openingPicture')
   $('body').removeClass('tavernPicture')
