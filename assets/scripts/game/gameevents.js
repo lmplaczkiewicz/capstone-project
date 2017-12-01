@@ -244,12 +244,12 @@ const characterToHit = function (event) {
   event.preventDefault()
   if (character.player_class.str >= character.player_class.dex) {
     const characterToHitRoll = roll.roll('d20')
-    characterToHitRoll.result += Math.floor(((character.player_class.str - 10) / 2))
+    characterToHitRoll.result += Math.floor(((character.player_class.str - 10) / 2) + character.level)
     $('#combatLogId').append('\n' + character.name + ' rolled ' + characterToHitRoll.result + ' to Hit!' + '\n')
     hitOrMiss(characterToHitRoll.result)
   } else {
     const characterToHitRoll = roll.roll('d20')
-    characterToHitRoll.result += Math.floor(((character.player_class.dex - 10) / 2))
+    characterToHitRoll.result += Math.floor(((character.player_class.dex - 10) / 2) + character.level)
     $('#combatLogId').append('\n' + character.name + ' rolled ' + characterToHitRoll.result + ' to Hit!' + '\n')
     hitOrMiss(characterToHitRoll.result)
   }
