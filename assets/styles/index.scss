@@ -2,8 +2,9 @@ $icon-font-path: '~bootstrap-sass/assets/fonts/bootstrap/';
 @import '~bootstrap-sass/assets/stylesheets/bootstrap';
 
 $background-tint: #1734C1;
-$background-color: rgba(0, 0, 0, .7);
+$background-color: rgba(81, 44, 11, .7);
 $border-color-input: rgba(255, 255, 255, 0.42);
+$white: #fff;
 $font-family: verdana;
 
 .openingPicture {
@@ -41,7 +42,7 @@ $font-family: verdana;
   padding: 15px;
   margin: 45px auto;
   label, input, .icon {
-    color: #29b6f6!important;
+    color: $white;
   }
   .input-group__details {
     &:before {
@@ -54,8 +55,13 @@ $font-family: verdana;
   background-color: rgba(0,0,0,0.0);
 }
 
-.nav-links {
+.navbar-brand {
+  font-size: 20px;
   color: white;
+}
+
+.nav-links {
+  color: $white;
   font-family: $font-family
 }
 
@@ -64,7 +70,7 @@ $font-family: verdana;
   display: block;
   width: 0;
   height: 2px;
-  background: #000;
+  background: $white;
   transition: width .3s;
 }
 
@@ -74,7 +80,7 @@ $font-family: verdana;
 }
 
 .hb-buttons:hover {
-    color: white;
+    color: $white;
     text-decoration: none
 }
 
@@ -93,12 +99,12 @@ $font-family: verdana;
 }
 
 .thumbnail > a:hover {
-  color: white;
+  color: $white;
   background-color: transparent
 }
 
 .nav > li > a:hover {
-  color: white;
+  color: $white;
   background-color: transparent
 }
 
@@ -106,42 +112,8 @@ $font-family: verdana;
   background-color: white
 }
 
-.thumbnail {
-  height: auto;
-  width: auto;
-  background-color: rgba(255, 233, 255, 0.5);
-  text-align: center;
-  font-family: $font-family;
-  border: none;
-  overflow: hidden;
-  color: white
-}
-
-.thumbnail-images {
-  color: #0000ff
-}
-
-.download-button {
-  color: #0000ff
-}
-
-.popover-title {
-  background-color: $background-color;
-  color: #29b6f6
-}
-
-.popover-content {
-  background-color: rgba(255, 233, 255, 0.5);
-  color: black
-}
-
 .dropdown-menu {
   background-color: rgba(255, 233, 255, 0.7)
-}
-
-.thumbnail > img {
-  width: 100%;
-  height: 200px;
 }
 
 p {
@@ -151,7 +123,7 @@ p {
 }
 
 .modal-title {
-  color: #29b6f6;
+  color: $white;
   font-family: $font-family;
   font-size: 20px;
   text-align: center
@@ -160,13 +132,12 @@ p {
 .form-control {
   background-color: transparent;
   border-radius: 0;
-  border-top: none;
-  border-right: none;
-  border-left: none;
+  border: inset;
+  color: $white;
 }
 
 label {
-  color: white;
+  color: $white;
   font-family: $font-family;
 }
 
@@ -180,13 +151,13 @@ label {
 }
 
 .btn-primary {
-  background-color: transparent;
+  // background-color: transparent;
   font-family: $font-family;
   border-color: 1px solid #2e6da4;
 }
 
 .btn-secondary {
-  background-color: transparent;
+  // background-color: transparent;
   font-family: $font-family;
   border-color: 1px solid #2e6da4;
 }
@@ -198,7 +169,7 @@ label {
 }
 
 .edit-modal-buttons:hover {
-  color: white;
+  color: $white;
 }
 
 .btn-info {
@@ -243,25 +214,28 @@ th {
 }
 
 .parchment {
+  border-style: outset;
   background: url('https://st2.depositphotos.com/1004788/6286/i/950/depositphotos_62860847-stock-photo-light-gold-background-paper-of.jpg') center;
 }
 
 .col {
   width: 250px;
   display: inline-block;
+  border-style: outset;
   background: url('https://st2.depositphotos.com/1004788/6286/i/950/depositphotos_62860847-stock-photo-light-gold-background-paper-of.jpg') no-repeat center;
   margin: 25px;
 }
 
 .statTile {
   float: right;
-  width: 250px;
+  width: 250px !important;
+  border-style: outset;
   background: url('https://st2.depositphotos.com/1004788/6286/i/950/depositphotos_62860847-stock-photo-light-gold-background-paper-of.jpg') no-repeat center;
   margin: 25px;
 }
 
 .startQuestButton {
-  margin: auto 25%;
+  margin: auto 30%;
 }
 
 .col-centered{
@@ -272,16 +246,19 @@ th {
 .card {
   width: 200px;
   text-align: center;
-  margin: auto
+  margin-right: 6%;
+  margin-left: 6%;
+  border: outset;
 }
 
 .combat {
-  height: 200px;
+  width: 300px;
+  height: 300px;
 }
 
 textarea {
   resize: none;
-  font-size: 10px;
+  font-size: 14px;
   line-height: 1;
 }
 

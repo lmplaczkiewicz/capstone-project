@@ -225,10 +225,10 @@ const fightTurns = function () {
 const determineActiveFighter = function () {
   if (characterRoll.result >= monsterRoll.result) {
     activeFighter = 1
-    checkWin()
+    fightTurns()
   } else {
     activeFighter = 2
-    checkWin()
+    fightTurns()
   }
 }
 
