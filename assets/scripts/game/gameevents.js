@@ -24,7 +24,9 @@ const onStartQuest = function (event) {
   const questId = event.target.getAttribute('data-id')
   api.getQuest(questId)
     .then(ui.getMonsterForDisplay)
-    .then(getMonsterForFight)
+    .then(ui.getQuestSuccess)
+    .then(() => $('.initButton').on('click', fightStart))
+    // .then(getMonsterForFight)
     .catch(ui.getQuestFailure)
 }
 
@@ -137,11 +139,40 @@ const addHandlers = function () {
 
 // COMBAT - Dependency Issue work around
 
+let activeHealthRoll
+
+const healthRoll = function (id) {
+  if (id === 1) {
+    activeHealthRoll = roll.roll('d10')
+  } else if (id === 2) {
+    activeHealthRoll = roll.roll('d12')
+  } else {
+    activeHealthRoll = roll.roll('d10')
+  }
+}
+
 const rewardAdd = function (character) {
   character.renown += store.quest.renown
   character.xp += store.monster.xp
   character.currency += store.quest.reward
   character.health = store.startingHealth
+  if (character.xp >= 300 && character.level === 1) {
+    healthRoll(character.player_class_id)
+    character.health += (activeHealthRoll.result + Math.floor(((character.player_class.con - 10) / 2)))
+    character.level = 2
+  } else if (character.xp >= 900 && character.level === 2) {
+    healthRoll(character.player_class_id)
+    character.health += (activeHealthRoll.result + Math.floor(((character.player_class.con - 10) / 2)))
+    character.level = 3
+  } else if (character.xp >= 2700 && character.level === 3) {
+    healthRoll(character.player_class_id)
+    character.health += (activeHealthRoll.result + Math.floor(((character.player_class.con - 10) / 2)))
+    character.level = 4
+  } else if (character.xp >= 6500 && character.level === 4) {
+    healthRoll(character.player_class_id)
+    character.health += (activeHealthRoll.result + Math.floor(((character.player_class.con - 10) / 2)))
+    character.level = 5
+  }
   return character
 }
 
@@ -266,14 +297,28 @@ const determineActiveFighter = function () {
   }
 }
 
-const getMonsterForFight = function () {
-  api.getMonster(store.monsters[0].id)
-    .then(fightStart)
-}
+// const showMonstersTemplate = require('../templates/monsterTiles.handlebars')
+// const showCharacterTemplate = require('../templates/statsTile.handlebars')
+// const showCombatUiTemplate = require('../templates/combatUi.handlebars')
 
-const fightStart = function (data) {
-  monster = data.monster
-  store.monster = data.monster
+// const getMonsterForFight = function () {
+// const adventurer = store.character
+// const monster = store.monster
+// const showMonstersHtml = showMonstersTemplate({ monster })
+// $('#MonsterTileDisplay').html(showMonstersHtml)
+// const showCharacterHtml = showCharacterTemplate({ adventurer })
+// $('#characterFightDisplay').html(showCharacterHtml)
+// const showCombatUiHtml = showCombatUiTemplate({})
+// $('#combatUiDisplay').html(showCombatUiHtml)
+// api.getMonster(store.monsters[0].id)
+//   $('.initButton').on('click', console.log('test'))
+// }
+
+const fightStart = function () {
+  $('.initButton').css('display', 'none')
+  $('.attackButton').css('display', 'block')
+  monster = store.monster
+  // store.monster = data.monster
   character = store.character
   monsterRoll = roll.roll('d20')
   characterRoll = roll.roll('d20')

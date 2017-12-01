@@ -15,6 +15,7 @@ const statGenerator = function (data) {
     data.character.currency = startGold.result * 10
     data.character.renown = 0
     data.character.weapon_id = 1
+    data.character.level = 1
     return data
   } else if (data.character.player_class_id === 'Fighter') {
     data.character.armor = 18
@@ -25,6 +26,7 @@ const statGenerator = function (data) {
     data.character.currency = startGold.result * 10
     data.character.renown = 0
     data.character.weapon_id = 3
+    data.character.level = 1
     return data
   } else if (data.character.player_class_id === 'Ranger') {
     data.character.armor = 14
@@ -35,6 +37,7 @@ const statGenerator = function (data) {
     data.character.currency = startGold.result * 10
     data.character.renown = 0
     data.character.weapon_id = 2
+    data.character.level = 1
     return data
   }
 }

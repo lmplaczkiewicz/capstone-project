@@ -121,7 +121,7 @@ const getQuestsFailure = () => {
 
 const assignStore = function (data) {
   store.monster = data.monster
-  getQuestSuccess()
+  // getQuestSuccess()
 }
 
 const getMonsterForDisplay = function (data) {
