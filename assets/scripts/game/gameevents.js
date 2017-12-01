@@ -13,7 +13,6 @@ const store = require('../store')
 const onCreateCharacter = function (event) {
   event.preventDefault()
   const formData = getFormFields(event.target)
-  console.log('event.target is', event.target)
   api.createCharacter(formData)
     .then(ui.onCreateCharacterSuccess)
     .then(showCharacters)
@@ -44,6 +43,8 @@ const playCharacter = function (event) {
   api.getCharacter(characterId)
     .then(ui.getCharacterSuccess)
     .then(getQuests)
+    .then($('#character-screen-link').show())
+    .then($('#character-screen-link').on('click', showCharacters))
     .catch(ui.getCharacterFailure)
 }
 
@@ -53,11 +54,12 @@ const replayCharacter = function (event) {
   api.getCharacter(characterId)
     .then(ui.getCharacterSuccess)
     .then(getQuests)
+    .then($('#character-screen-link').show())
+    .then($('#character-screen-link').on('click', showCharacters))
     .catch(ui.getCharacterFailure)
 }
 
 const showCharacters = function () {
-  console.log('showCharacters')
   api.showCharacters()
     .then(ui.showCharactersSuccess)
     .catch(ui.showCharactersFailure)
@@ -137,12 +139,10 @@ const reduceHealth = function (damage) {
   if (activeFighter === 1) {
     store.monster.health -= damage
     store.monster.health = Math.max(store.monster.health, 0)
-    console.log(store.monster)
     ui.updateTiles()
   } else {
     store.character.health -= damage
     store.character.health = Math.max(store.character.health, 0)
-    console.log(store.character)
     ui.updateTiles()
   }
 }
@@ -189,7 +189,6 @@ const characterToHit = function (event) {
 const dealMonsterDamage = function () {
   const monsterDamageRoll = roll.roll(monster.weapon.dice + 'd' + monster.weapon.sides)
   $('#combatLogId').append('\n' + monster.name + ' dealt ' + monsterDamageRoll.result + ' damage with their ' + monster.weapon.name + '!' + '\n')
-  console.log(monster.weapon.name)
   reduceHealth(monsterDamageRoll.result)
   activeFighter = 1
   checkWin()
@@ -215,7 +214,6 @@ const dealCharacterDamage = function () {
 
 const fightTurns = function () {
   if (activeFighter === 1) {
-    console.log(activeFighter)
     $('.attackButton').one('click', characterToHit)
   } else {
     monsterToHit()
@@ -246,8 +244,6 @@ const fightStart = function (data) {
   characterRoll.result += Math.floor(((character.player_class.dex - 10) / 2))
   $('#combatLogId').append('\n' + monster.name + ' rolled ' + monsterRoll.result + ' for initiative!' + '\n')
   $('#combatLogId').append('\n' + character.name + ' rolled ' + characterRoll.result + ' for initiative!' + '\n')
-  console.log('this is monster', monster)
-  console.log('this is character', character.weapon.name)
   determineActiveFighter()
 }
 

@@ -90,6 +90,7 @@ const initializeForm = () => {
   $('#sign-in-message').text('Please Sign In to Play.')
   $('#sign-in-form').modal('show')
   $('#uploads-thumbnails').hide()
+  $('#character-screen-link').hide()
   $('#no-uploads-message').hide()
   $('#file-upload-all-link').hide()
   $('#MonsterTileDisplay').hide()

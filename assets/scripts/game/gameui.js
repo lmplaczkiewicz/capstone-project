@@ -11,10 +11,14 @@ const showCombatUiTemplate = require('../templates/combatUi.handlebars')
 const showStatsTemplate = require('../templates/tavernStatTile.handlebars')
 
 const showCharactersSuccess = function (data) {
-  console.log(data)
   $('#MonsterTileDisplay').hide()
   $('#characterFightDisplay').hide()
   $('#combatUiDisplay').hide()
+  $('#questTileDisplay').hide()
+  $('#tavernStatTileDisplay').hide()
+  $('#character-screen-link').hide()
+  $('body').addClass('openingPicture')
+  $('body').removeClass('tavernPicture')
   const showScreenHtml = showScreenTemplate({})
   $('#characterScreenDisplay').html(showScreenHtml)
   const showCharactersHtml = showCharactersTemplate({ characters: data.characters })
@@ -98,7 +102,6 @@ const updateCharacterFailure = () => {
 // QUEST CALLS
 
 const getQuestsSuccess = function (data) {
-  console.log(data)
   const adventurer = store.character
   $('#MonsterTileDisplay').hide()
   $('#characterFightDisplay').hide()
@@ -134,12 +137,12 @@ const getQuestSuccess = function () {
   // store.monsters = data.quest.monsters
   const adventurer = store.character
   const monster = store.monster
-  console.log('this is monster', monster)
   store.startingHealth = store.character.health
   $('body').addClass('openingPicture')
   $('body').removeClass('tavernPicture')
   $('#questTileDisplay').hide()
   $('#tavernStatTileDisplay').hide()
+  $('#character-screen-link').hide()
   $('#MonsterTileDisplay').show()
   $('#characterFightDisplay').show()
   $('#combatUiDisplay').show()
@@ -161,8 +164,6 @@ const getQuestFailure = () => {
 const updateTiles = function () {
   const monster = store.monster
   const adventurer = store.character
-  console.log(adventurer)
-  console.log(monster)
   const showMonstersHtml = showMonstersTemplate({ monster })
   $('#MonsterTileDisplay').html(showMonstersHtml)
   const showCharacterHtml = showCharacterTemplate({ adventurer })

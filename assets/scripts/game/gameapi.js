@@ -51,7 +51,6 @@ const statGenerator = function (data) {
 
 const createCharacter = function (data) {
   const character = statGenerator(data)
-  console.log(character)
   return $.ajax({
     url: config.apiOrigin + '/characters',
     method: 'POST',
@@ -73,7 +72,6 @@ const removeCharacter = function (data) {
 }
 
 const updateCharacter = function (characterId, data) {
-  console.log(data)
   return $.ajax({
     url: config.apiOrigin + '/characters/' + characterId,
     method: 'PATCH',
@@ -147,8 +145,6 @@ const deadCharacter = function (data) {
 }
 
 const updateQuestCharacter = function (characterId, data) {
-  console.log(characterId)
-  console.log(data)
   return $.ajax({
     url: config.apiOrigin + '/characters/' + characterId,
     method: 'PATCH',
