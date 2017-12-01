@@ -18,3 +18,6 @@ https://github.com/lmplaczkiewicz/capstone-project/blob/master/planning/userStor
 Wireframe: https://github.com/lmplaczkiewicz/capstone-project/blob/master/planning/Wireframe%201.png
 
 https://github.com/lmplaczkiewicz/capstone-project/blob/master/planning/Wireframe%202.png
+
+Snapshot:
+<img src='https://github.com/lmplaczkiewicz/capstone-project/blob/master/planning/snapshot.png?raw=true' />
