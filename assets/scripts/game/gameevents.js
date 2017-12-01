@@ -43,8 +43,20 @@ const playCharacter = function (event) {
   api.getCharacter(characterId)
     .then(ui.getCharacterSuccess)
     .then(getQuests)
+    .then(function () {
+      $('#createCharacter').off()
+    })
+    .then(function () {
+      $('.removeCharacterButton').off()
+    })
+    .then(function () {
+      $('.updateFormCharacterButton').off()
+    })
+    .then(function () {
+      $('.playCharacterButton').off()
+    })
     .then($('#character-screen-link').show())
-    .then($('#character-screen-link').on('click', showCharacters))
+    .then($('#character-screen-link').one('click', showCharacters))
     .catch(ui.getCharacterFailure)
 }
 
@@ -54,8 +66,20 @@ const replayCharacter = function (event) {
   api.getCharacter(characterId)
     .then(ui.getCharacterSuccess)
     .then(getQuests)
+    .then(function () {
+      $('#createCharacter').off()
+    })
+    .then(function () {
+      $('.removeCharacterButton').off()
+    })
+    .then(function () {
+      $('.updateFormCharacterButton').off()
+    })
+    .then(function () {
+      $('.playCharacterButton').off()
+    })
     .then($('#character-screen-link').show())
-    .then($('#character-screen-link').on('click', showCharacters))
+    .then($('#character-screen-link').one('click', showCharacters))
     .catch(ui.getCharacterFailure)
 }
 
@@ -63,6 +87,18 @@ const showCharacters = function () {
   api.showCharacters()
     .then(ui.showCharactersSuccess)
     .catch(ui.showCharactersFailure)
+    .then(function () {
+      $('#createCharacter').off()
+    })
+    .then(function () {
+      $('.removeCharacterButton').off()
+    })
+    .then(function () {
+      $('.updateFormCharacterButton').off()
+    })
+    .then(function () {
+      $('.playCharacterButton').off()
+    })
     .then(function () {
       $('#createCharacter').on('submit', onCreateCharacter)
     })
