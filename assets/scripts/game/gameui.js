@@ -9,6 +9,8 @@ const showMonstersTemplate = require('../templates/monsterTiles.handlebars')
 const showCharacterTemplate = require('../templates/statsTile.handlebars')
 const showCombatUiTemplate = require('../templates/combatUi.handlebars')
 const showStatsTemplate = require('../templates/tavernStatTile.handlebars')
+const Roll = require('roll')
+let roll = new Roll()
 
 const showCharactersSuccess = function (data) {
   $('#MonsterTileDisplay').hide()
@@ -119,8 +121,19 @@ const getQuestsFailure = () => {
   alertCallerFailure('frontError', 'Unable to Load Quests')
 }
 
+const scaleMonster = function (monster) {
+  if (store.character.level > 1) {
+    const healthAddRoll = roll.roll(store.character.level + 'd10')
+    store.monster.health += healthAddRoll.result
+    store.monster.weapon.dice += 1
+    store.monster.xp *= store.character.level
+  } else {
+  }
+}
+
 const assignStore = function (data) {
   store.monster = data.monster
+  scaleMonster(store.monster)
   // getQuestSuccess()
 }
 

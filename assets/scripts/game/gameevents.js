@@ -235,6 +235,7 @@ const hitOrMiss = function (roll) {
 
 const monsterToHit = function () {
   const monsterToHitRoll = roll.roll('d20')
+  monsterToHitRoll.result += Math.floor(store.character.level * 1.5)
   $('#combatLogId').append('\n' + monster.name + ' rolled ' + monsterToHitRoll.result + ' to Hit!' + '\n')
   hitOrMiss(monsterToHitRoll.result)
 }
@@ -296,21 +297,6 @@ const determineActiveFighter = function () {
     activeFighter = 2
     fightTurns()
   }
-}
-
-const showMonstersTemplate = require('../templates/monsterTiles.handlebars')
-const showCharacterTemplate = require('../templates/statsTile.handlebars')
-const showCombatUiTemplate = require('../templates/combatUi.handlebars')
-
-const getMonsterForFight = function () {
-  const adventurer = store.character
-  const monster = store.monster
-  const showMonstersHtml = showMonstersTemplate({ monster })
-  $('#MonsterTileDisplay').html(showMonstersHtml)
-  const showCharacterHtml = showCharacterTemplate({ adventurer })
-  $('#characterFightDisplay').html(showCharacterHtml)
-  const showCombatUiHtml = showCombatUiTemplate({})
-  $('#combatUiDisplay').html(showCombatUiHtml)
 }
 
 const fightStart = function () {
