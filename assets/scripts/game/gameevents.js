@@ -25,6 +25,7 @@ const onStartQuest = function (event) {
   api.getQuest(questId)
     .then(ui.getMonsterForDisplay)
     .then(ui.getQuestSuccess)
+    // .then(getMonsterForFight)
     .then(() => $('.initButton').on('click', fightStart))
     // .then(getMonsterForFight)
     .catch(ui.getQuestFailure)
@@ -297,22 +298,20 @@ const determineActiveFighter = function () {
   }
 }
 
-// const showMonstersTemplate = require('../templates/monsterTiles.handlebars')
-// const showCharacterTemplate = require('../templates/statsTile.handlebars')
-// const showCombatUiTemplate = require('../templates/combatUi.handlebars')
+const showMonstersTemplate = require('../templates/monsterTiles.handlebars')
+const showCharacterTemplate = require('../templates/statsTile.handlebars')
+const showCombatUiTemplate = require('../templates/combatUi.handlebars')
 
-// const getMonsterForFight = function () {
-// const adventurer = store.character
-// const monster = store.monster
-// const showMonstersHtml = showMonstersTemplate({ monster })
-// $('#MonsterTileDisplay').html(showMonstersHtml)
-// const showCharacterHtml = showCharacterTemplate({ adventurer })
-// $('#characterFightDisplay').html(showCharacterHtml)
-// const showCombatUiHtml = showCombatUiTemplate({})
-// $('#combatUiDisplay').html(showCombatUiHtml)
-// api.getMonster(store.monsters[0].id)
-//   $('.initButton').on('click', console.log('test'))
-// }
+const getMonsterForFight = function () {
+  const adventurer = store.character
+  const monster = store.monster
+  const showMonstersHtml = showMonstersTemplate({ monster })
+  $('#MonsterTileDisplay').html(showMonstersHtml)
+  const showCharacterHtml = showCharacterTemplate({ adventurer })
+  $('#characterFightDisplay').html(showCharacterHtml)
+  const showCombatUiHtml = showCombatUiTemplate({})
+  $('#combatUiDisplay').html(showCombatUiHtml)
+}
 
 const fightStart = function () {
   $('.initButton').css('display', 'none')

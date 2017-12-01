@@ -136,22 +136,22 @@ const getQuestSuccess = function () {
   // store.quest = data.quest
   // store.monsters = data.quest.monsters
   const adventurer = store.character
-  const monster = store.monster
+  const monster = store.monsters[0]
   store.startingHealth = store.character.health
   $('body').addClass('openingPicture')
   $('body').removeClass('tavernPicture')
   $('#questTileDisplay').hide()
   $('#tavernStatTileDisplay').hide()
   $('#character-screen-link').hide()
-  $('#MonsterTileDisplay').show()
-  $('#characterFightDisplay').show()
-  $('#combatUiDisplay').show()
   const showMonstersHtml = showMonstersTemplate({ monster })
   $('#MonsterTileDisplay').html(showMonstersHtml)
   const showCharacterHtml = showCharacterTemplate({ adventurer })
   $('#characterFightDisplay').html(showCharacterHtml)
   const showCombatUiHtml = showCombatUiTemplate({})
   $('#combatUiDisplay').html(showCombatUiHtml)
+  $('#MonsterTileDisplay').show()
+  $('#characterFightDisplay').show()
+  $('#combatUiDisplay').show()
   alertCallerSuccess('frontSuccess', 'Quest Selected')
 }
 
