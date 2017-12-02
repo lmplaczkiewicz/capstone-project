@@ -122,15 +122,15 @@ const getQuestsFailure = () => {
 }
 
 const scaleMonster = function (monster) {
-  if (store.character.level > 1) {
-    const healthAddRoll = roll.roll(store.character.level + 'd6')
-    store.monster.health += healthAddRoll.result
-    // store.monster.weapon.dice += 1
-    store.monster.xp *= store.character.level
-  } else if (store.character.level > 2) {
+  if (store.character.level > 2) {
     const healthAddRoll = roll.roll(store.character.level + 'd12')
     store.monster.health += healthAddRoll.result
     store.monster.weapon.dice += 1
+    store.monster.xp *= store.character.level
+  } else if (store.character.level > 1) {
+    const healthAddRoll = roll.roll(store.character.level + 'd6')
+    store.monster.health += healthAddRoll.result
+    // store.monster.weapon.dice += 1
     store.monster.xp *= store.character.level
   } else {
   }
